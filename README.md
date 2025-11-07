@@ -1,3 +1,2 @@
 # Tongji_DataStructure_2023
 本项目为同济大学国豪书院23级计算机科学与技术精英班《数据结构》课程课件与平时作业。项目仅供学习与交流，切勿全盘复制。
- a04298e (first commit on submit branch)
