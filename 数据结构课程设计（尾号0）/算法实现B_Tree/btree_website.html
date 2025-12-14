@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B-树可视化 (2-3树)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>3阶B-树可视化系统 </h1>
+            <p>从空树开始构造深度至少为3的B-树，支持实时查找、插入、删除操作</p>
+        </header>
+
+        <div class="controls">
+            <div class="input-section">
+                <label for="valueInput">输入值:</label>
+                <input type="number" id="valueInput" placeholder="请输入数字" min="1" max="999">
+            </div>
+            
+            <div class="button-section">
+                <button id="insertBtn" class="btn btn-primary">插入</button>
+                <button id="searchBtn" class="btn btn-secondary">查找</button>
+                <button id="deleteBtn" class="btn btn-danger">删除</button>
+                <button id="clearBtn" class="btn btn-warning">清空树</button>
+                <button id="validateBtn" class="btn btn-success">验证树结构</button>
+            </div>
+        </div>
+
+        <div class="info-panel">
+            <div id="messageArea" class="message-area"></div>
+            <div class="tree-info">
+                <span>树的深度: <span id="treeDepth">0</span></span>
+                <span>节点总数: <span id="nodeCount">0</span></span>
+                <span>键的总数: <span id="keyCount">0</span></span>
+            </div>
+        </div>
+
+        <div class="tree-container">
+            <div id="treeVisualization" class="tree-visualization">
+                <div class="empty-tree">
+                    <p>🌳 空树</p>
+                    <p>请插入数据开始构造B-树</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="operation-history">
+            <h3>操作历史</h3>
+            <div id="historyList" class="history-list"></div>
+            <button id="clearHistoryBtn" class="btn btn-secondary">清空历史</button>
+        </div>
+    </div>
+
+    <script src="btree_api.js"></script>
+    <script src="visualization.js"></script>
+    <script src="validator.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

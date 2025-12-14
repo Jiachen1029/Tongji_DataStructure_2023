@@ -1,0 +1,420 @@
+/* B-树可视化样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.controls {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-section label {
+    font-weight: bold;
+    color: #555;
+}
+
+.input-section input {
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 150px;
+    transition: border-color 0.3s;
+}
+
+.input-section input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.button-section {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.btn-primary {
+    background: #28a745;
+    color: white;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-warning {
+    background: #ffc107;
+    color: #212529;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-info {
+    background: #17a2b8;
+    color: white;
+}
+
+.info-panel {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.message-area {
+    min-height: 40px;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: pre-line;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.message-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message-error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.message-info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+.tree-info {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.tree-info span {
+    background: #f8f9fa;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #495057;
+}
+
+.tree-container {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    min-height: 400px;
+    position: relative;
+}
+
+.tree-visualization {
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.svg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.connection-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.tree-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.empty-tree {
+    text-align: center;
+    color: #6c757d;
+    margin-top: 100px;
+}
+
+.empty-tree p:first-child {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.empty-tree p:last-child {
+    font-size: 1.2rem;
+}
+
+/* B-树节点样式 */
+.btree-level {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.btree-node {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border: 3px solid #007bff;
+    border-radius: 12px;
+    padding: 12px 8px;
+    margin: 0 15px;
+    box-shadow: 0 6px 20px rgba(0,123,255,0.15);
+    position: relative;
+    min-width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.btree-node:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,123,255,0.25);
+}
+
+.btree-node.highlight {
+    border-color: #28a745;
+    background: linear-gradient(145deg, #d4edda, #c3e6cb);
+    animation: pulse 1s ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.btree-keys {
+    display: flex;
+    gap: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #495057;
+}
+
+.btree-key {
+    background: #e9ecef;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+}
+
+.btree-key.found {
+    background: #28a745;
+    color: white;
+    animation: bounce 0.5s ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* 连接线样式 */
+.connection-svg line {
+    stroke: #6c757d;
+    stroke-width: 2;
+    stroke-linecap: round;
+    transition: stroke 0.3s ease;
+}
+
+.connection-svg line:hover {
+    stroke: #007bff;
+    stroke-width: 3;
+}
+
+.operation-history {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.operation-history h3 {
+    margin-bottom: 15px;
+    color: #495057;
+    text-align: center;
+}
+
+.history-list {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.history-item {
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+}
+
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.history-item.insert {
+    background: #d4edda;
+    color: #155724;
+}
+
+.history-item.delete {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.history-item.search {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .controls {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .button-section {
+        justify-content: center;
+    }
+    
+    .tree-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btree-level {
+        flex-wrap: wrap;
+    }
+    
+    .btree-node {
+        margin: 5px;
+        min-width: 60px;
+    }
+}
+
+/* 加载动画 */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
